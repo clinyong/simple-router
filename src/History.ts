@@ -3,13 +3,22 @@ export class History {
 
   constructor() {
     window.addEventListener("popstate", this.onStateChange);
+    window.addEventListener("load", this.init);
   }
 
-  private onStateChange = (ev: PopStateEvent) => {
-    const cb = this.routes[ev.state];
+  private onURLChange = (url: string) => {
+    const cb = this.routes[url];
     if (cb) {
       cb();
     }
+  };
+
+  private init = () => {
+    this.onURLChange(location.pathname);
+  };
+
+  private onStateChange = (ev: PopStateEvent) => {
+    this.onURLChange(ev.state.url);
   };
 
   route = (url: string, cb: () => void) => {
@@ -17,6 +26,15 @@ export class History {
   };
 
   goto = (url: string) => {
-    location.hash = url;
+    if (url !== location.pathname) {
+      history.pushState(
+        {
+          url
+        },
+        null,
+        url
+      );
+      this.onURLChange(url);
+    }
   };
 }

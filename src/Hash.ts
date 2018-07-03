@@ -3,10 +3,11 @@ export class Hash {
 
   constructor() {
     window.addEventListener("hashchange", this.onHashChange);
+    window.addEventListener("load", this.onHashChange);
   }
 
   private onHashChange = () => {
-    const cb = this.routes[location.hash];
+    const cb = this.routes[location.hash.slice(1)];
     if (cb) {
       cb();
     }

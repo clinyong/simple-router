@@ -18,8 +18,10 @@ export class Router {
   constructor(mode: Mode) {
     if (mode === "hash") {
       this.router = new Hash();
-    } else {
+    } else if (mode === "history") {
       this.router = new History();
+    } else {
+      throw new Error("Router mode must be hash or history.");
     }
   }
 

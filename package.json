@@ -2,5 +2,12 @@
   "name": "simple-router",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel examples/index.html"
+  },
+  "devDependencies": {
+    "parcel": "^1.9.4",
+    "typescript": "^2.9.2"
+  }
 }
