@@ -6,4 +6,4 @@ Simple SAP router.
 $ npm start
 ```
 
-And Visit `http://localhost:1234`.
+And visit `http://localhost:1234`.
